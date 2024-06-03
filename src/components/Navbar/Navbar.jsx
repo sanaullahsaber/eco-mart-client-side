@@ -1,8 +1,10 @@
 import { Avatar, Dropdown, Navbar } from "flowbite-react";
 import navImage from "../../assets/navbar/Group 93.png"
 import { Link, NavLink } from "react-router-dom";
+import useAuth from "../../hooks/useAuth";
 
 const NavBar = () => {
+  const { user } = useAuth();
   return (
     <div
       style={{
@@ -28,7 +30,10 @@ const NavBar = () => {
               label={
                 <Avatar
                   alt="User settings"
-                  img="https://flowbite.com/docs/images/people/profile-picture-5.jpg"
+                  img={
+                    user?.photoURL ||
+                    "https://flowbite.com/docs/images/people/profile-picture-5.jpg"
+                  }
                   rounded
                 />
               }
@@ -47,7 +52,15 @@ const NavBar = () => {
                 <NavLink to={"register"}>Register</NavLink>
               </Dropdown.Item>
               <Dropdown.Item>
-                <Link to={"login"}>Log in</Link>
+                {user ? (
+                  <>
+                    <Link to={"login"}>Log out</Link>
+                  </>
+                ) : (
+                  <>
+                    <Link to={"login"}>Log in</Link>
+                  </>
+                )}
               </Dropdown.Item>
             </Dropdown>
             <Navbar.Toggle />
@@ -75,6 +88,16 @@ const NavBar = () => {
               </NavLink>
             </Navbar.Link>
 
+            <Navbar.Link href="#">
+              <NavLink
+                className={({ isActive }) =>
+                  isActive ? "text-red-600 underline" : ""
+                }
+                to={"dashboard"}
+              >
+                Dashboard
+              </NavLink>
+            </Navbar.Link>
             <Navbar.Link href="#">
               <NavLink
                 className={({ isActive }) =>
