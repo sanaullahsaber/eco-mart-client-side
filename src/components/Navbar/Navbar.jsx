@@ -43,9 +43,12 @@ const NavBar = () => {
                 <Link to="dashboard">Dashboard</Link>
               </Dropdown.Item>
               <Dropdown.Divider />
-              <Dropdown.Item>Sign up</Dropdown.Item>
-              <Dropdown.Item>Log in</Dropdown.Item>
-              <Dropdown.Item>Log out</Dropdown.Item>
+              <Dropdown.Item>
+                <NavLink to={"register"}>Register</NavLink>
+              </Dropdown.Item>
+              <Dropdown.Item>
+                <Link to={"login"}>Log in</Link>
+              </Dropdown.Item>
             </Dropdown>
             <Navbar.Toggle />
           </div>

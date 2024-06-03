@@ -7,6 +7,8 @@ import Product from "../pages/Product/Product";
 import Blog from "../pages/Blog/Blog";
 import Contact from "../pages/Contact/Contact";
 import DashboardLayout from "../layouts/DashboardLayout";
+import Login from "../pages/Login/Login";
+import Registration from "../pages/Registration/Registration";
 
 export const router = createBrowserRouter([
   {
@@ -34,6 +36,14 @@ export const router = createBrowserRouter([
         path: "/contact",
         element: <Contact></Contact>,
       },
+      {
+        path: "/login",
+        element: <Login></Login>
+      },
+      {
+        path: "/register",
+        element: <Registration></Registration>
+      }
     ],
   },
   {
