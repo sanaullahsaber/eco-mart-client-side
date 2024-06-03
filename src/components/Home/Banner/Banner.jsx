@@ -11,8 +11,6 @@ const Banner = () => {
       className="pt-20"
     >
       <div className="max-w-screen-2xl mx-auto px-4">
-        {" "}
-        {/* Added padding for smaller screens */}
         <div className="flex flex-col-reverse lg:flex-row items-center justify-between">
           <div className="max-w-md text-center lg:text-left ">
             <p className="text-3xl font-semibold leading-9 uppercase text-[#FFFFFD] pb-4">
