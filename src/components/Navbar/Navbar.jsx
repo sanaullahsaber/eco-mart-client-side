@@ -4,7 +4,11 @@ import { Link, NavLink } from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
 
 const NavBar = () => {
-  const { user } = useAuth();
+  const { logOut, user } = useAuth();
+
+  const handleLogOut = async () => {
+    await logOut()
+  }
   return (
     <div
       style={{
@@ -53,15 +57,27 @@ const NavBar = () => {
               </Dropdown.Item>
               <Dropdown.Item>
                 {user ? (
-                  <>
-                    <Link to={"login"}>Log out</Link>
-                  </>
+                  <div onClick={handleLogOut} className="cursor-pointer">
+                    Logout
+                  </div>
                 ) : (
                   <>
-                    <Link to={"login"}>Log in</Link>
+                    <Link to="/login" className="cursor-pointer">
+                      Login
+                    </Link>
                   </>
                 )}
               </Dropdown.Item>
+              {/* <Dropdown.Item>
+                {user && (
+                  <button
+                    onClick={handleLogOut}
+                    className="btn bg-red-500 text-white hidden lg:block"
+                  >
+                    Logout
+                  </button>
+                )}
+              </Dropdown.Item> */}
             </Dropdown>
             <Navbar.Toggle />
           </div>
