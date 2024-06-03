@@ -6,6 +6,7 @@ import Shop from "../pages/Shop/Shop";
 import Product from "../pages/Product/Product";
 import Blog from "../pages/Blog/Blog";
 import Contact from "../pages/Contact/Contact";
+import DashboardLayout from "../layouts/DashboardLayout";
 
 export const router = createBrowserRouter([
   {
@@ -35,5 +36,15 @@ export const router = createBrowserRouter([
       },
     ],
   },
-  
+  {
+    path: "/dashboard",
+    element: <DashboardLayout></DashboardLayout>,
+    errorElement: <ErrorPage></ErrorPage>,
+    children: [
+      {
+        path: "",
+        element: <div>hello world</div>
+      }
+    ]
+  },
 ]);

@@ -39,11 +39,13 @@ const NavBar = () => {
                   name@flowbite.com
                 </span>
               </Dropdown.Header>
-              <Dropdown.Item>Dashboard</Dropdown.Item>
-              <Dropdown.Item>Settings</Dropdown.Item>
-              <Dropdown.Item>Earnings</Dropdown.Item>
+              <Dropdown.Item>
+                <Link to="dashboard">Dashboard</Link>
+              </Dropdown.Item>
               <Dropdown.Divider />
-              <Dropdown.Item>Sign out</Dropdown.Item>
+              <Dropdown.Item>Sign up</Dropdown.Item>
+              <Dropdown.Item>Log in</Dropdown.Item>
+              <Dropdown.Item>Log out</Dropdown.Item>
             </Dropdown>
             <Navbar.Toggle />
           </div>

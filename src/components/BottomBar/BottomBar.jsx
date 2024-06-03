@@ -1,6 +1,6 @@
 import { Footer } from "flowbite-react";
-import { BsDribbble, BsFacebook, BsGithub, BsInstagram, BsTwitter, BsLinkedin, BsPinterest } from "react-icons/bs";
-import { MdMailOutline } from "react-icons/md";
+import {  BsFacebook,  BsInstagram,  BsLinkedin, BsPinterest } from "react-icons/bs";
+// import { MdMailOutline } from "react-icons/md";
 import navImage from "../../assets/navbar/Group 93.png";
 import { Link } from "react-router-dom";
 
