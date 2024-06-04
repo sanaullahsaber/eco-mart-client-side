@@ -13,6 +13,7 @@ import ProfileManagement from "../pages/Dashboard/ProfileManagement/ProfileManag
 import PrivateRoute from "./private/PrivateRoute";
 import EditProfile from "../pages/Dashboard/EditProfile/EditProfile";
 import ChangePassword from "../pages/Dashboard/EditProfile/ChangePassword";
+import AddProducts from "../pages/Dashboard/AddProducts/AddProducts";
 
 export const router = createBrowserRouter([
   {
@@ -52,7 +53,11 @@ export const router = createBrowserRouter([
   },
   {
     path: "dashboard",
-    element: <DashboardLayout></DashboardLayout>,
+    element: (
+      <PrivateRoute>
+        <DashboardLayout></DashboardLayout>
+      </PrivateRoute>
+    ),
     errorElement: <ErrorPage></ErrorPage>,
     children: [
       {
@@ -83,7 +88,14 @@ export const router = createBrowserRouter([
         loader: ({ params }) =>
           fetch(`http://localhost:5000/user/get/${params.id}`),
       },
-
+      {
+        path: "add-products",
+        element: (
+          <PrivateRoute>
+           <AddProducts></AddProducts>
+          </PrivateRoute>
+        ),
+      },
     ],
   },
 ]);

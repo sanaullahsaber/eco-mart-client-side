@@ -35,6 +35,17 @@ const ProfileManagement = () => {
           <span className="text-sm text-gray-500 dark:text-gray-400">
             {userInfo?.email || "Loading..."}
           </span>
+          {userInfo?.age && (
+            <span className="text-sm text-gray-500 mb-2">
+              Age: {userInfo?.age}
+            </span>
+          )}
+          {userInfo?.mobileNumber && (
+            <span className="text-sm text-gray-500 mb-4">
+              Mobile: {userInfo?.mobileNumber}
+            </span>
+          )}
+
           <div className="mt-4 flex space-x-3 lg:mt-6">
             <Link
               to={`/dashboard/profile/edit/${userInfo?._id}`}

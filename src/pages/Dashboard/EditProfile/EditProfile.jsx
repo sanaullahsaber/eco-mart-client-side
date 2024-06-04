@@ -1,20 +1,40 @@
+import toast from "react-hot-toast";
 import { useLoaderData } from "react-router-dom";
 
 const EditProfile = () => {
   const data = useLoaderData();
   console.log(data);
+  
   const handleSubmit = (e) => {
     e.preventDefault();
 
     const form = e.target;
     const name = form.name.value;
-    const imageURL = form.imageURL.value;
-    const new_password = form.new_password.value;
-    const confirm_password = form.confirm_password.value;
+    const photoURL = form.photoURL.value;
     const age = form.age.value;
     const mobileNumber = form.mobileNumber.value;
 
-    console.log("edit hoitases", name, imageURL, new_password, confirm_password, age, mobileNumber);
+    console.log("edit hoitases", name, photoURL, age, mobileNumber);
+
+    const userData = {
+      name,
+      photoURL,
+      age,
+      mobileNumber,
+      email: data?.email,
+    };
+    fetch(`http://localhost:5000/user/${data?.email}`, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(userData),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        toast.success("Updated Profile successfully");
+      });
 
     
   }
@@ -62,48 +82,15 @@ const EditProfile = () => {
         <div className="mb-4">
           <label
             className="block text-gray-700 text-sm font-semibold mb-2"
-            htmlFor="imageURL"
+            htmlFor="photoURL"
           >
             Image URL
           </label>
           <input
             type="text"
-            id="imageURL"
-            name="imageURL"
-            placeholder="imageURL"
-            className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-500"
-            required
-          />
-        </div>
-        {/* Existing form fields */}
-        <div className="mb-4">
-          <label
-            className="block text-gray-700 text-sm font-semibold mb-2"
-            htmlFor="new_password"
-          >
-            New Password
-          </label>
-          <input
-            type="password"
-            id="new_password"
-            name="new_password"
-            placeholder="New Password"
-            className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-500"
-            required
-          />
-        </div>
-        <div className="mb-6">
-          <label
-            className="block text-gray-700 text-sm font-semibold mb-2"
-            htmlFor="confirm_password"
-          >
-            Confirm New Password
-          </label>
-          <input
-            type="password"
-            id="confirm_password"
-            name="confirm_password"
-            placeholder="Confirm New Password"
+            id="photoURL"
+            name="photoURL"
+            placeholder="photoURL"
             className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-500"
             required
           />

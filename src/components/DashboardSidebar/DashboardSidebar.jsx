@@ -1,29 +1,27 @@
 import { useState } from "react";
-import {
-  Drawer,
-  Sidebar,
-  TextInput,
-  Navbar,
-} from "flowbite-react";
+import { Drawer, Sidebar, TextInput, Navbar } from "flowbite-react";
 import {
   HiSearch,
-  HiChartPie,
-  HiClipboard,
-  HiCollection,
-  HiInformationCircle,
+  HiHome,
+
   HiLogin,
-  HiPencil,
   HiShoppingBag,
   HiUsers,
 } from "react-icons/hi";
-import {  } from "react-icons/hi";
+import {} from "react-icons/hi";
 import { Link } from "react-router-dom";
 import navImage from "../../assets/navbar/Group 93.png";
+import useAuth from "../../hooks/useAuth";
 
 const DashboardSidebar = () => {
+  const { logOut, user } = useAuth();
   const [isOpen, setIsOpen] = useState(false);
 
   const handleClose = () => setIsOpen(false);
+
+  const handleLogOut = async () => {
+    await logOut();
+  };
 
   return (
     <>
@@ -70,14 +68,21 @@ const DashboardSidebar = () => {
               </form>
               <Sidebar.Items>
                 <Sidebar.ItemGroup>
-                  <Sidebar.Item href="/dashboard" icon={HiChartPie}>
-                    Dashboard
+                  <Sidebar.Item href="/" icon={HiHome}>
+                    Home
                   </Sidebar.Item>
+
                   <Sidebar.Item
-                    href="/e-commerce/products"
+                    href="/dashboard/add-products"
                     icon={HiShoppingBag}
                   >
-                    Products
+                    All Products
+                  </Sidebar.Item>
+                  <Sidebar.Item
+                    href="/dashboard/add-products"
+                    icon={HiShoppingBag}
+                  >
+                    Add Products
                   </Sidebar.Item>
                   <Sidebar.Item
                     href="/dashboard/profile-management"
@@ -85,32 +90,13 @@ const DashboardSidebar = () => {
                   >
                     Profile Management
                   </Sidebar.Item>
-                  <Sidebar.Item href="/authentication/sign-in" icon={HiLogin}>
-                    Sign in
-                  </Sidebar.Item>
-                  <Sidebar.Item href="/authentication/sign-up" icon={HiPencil}>
-                    Sign up
-                  </Sidebar.Item>
                 </Sidebar.ItemGroup>
                 <Sidebar.ItemGroup>
-                  <Sidebar.Item
-                    href="https://github.com/themesberg/flowbite-react/"
-                    icon={HiClipboard}
-                  >
-                    Docs
-                  </Sidebar.Item>
-                  <Sidebar.Item
-                    href="https://flowbite-react.com/"
-                    icon={HiCollection}
-                  >
-                    Components
-                  </Sidebar.Item>
-                  <Sidebar.Item
-                    href="https://github.com/themesberg/flowbite-react/issues"
-                    icon={HiInformationCircle}
-                  >
-                    Help
-                  </Sidebar.Item>
+                  {user && (
+                    <Sidebar.Item icon={HiLogin} onClick={handleLogOut}>
+                      Log out
+                    </Sidebar.Item>
+                  )}
                 </Sidebar.ItemGroup>
               </Sidebar.Items>
             </div>
@@ -144,14 +130,20 @@ const DashboardSidebar = () => {
                 </form>
                 <Sidebar.Items>
                   <Sidebar.ItemGroup>
-                    <Sidebar.Item href="/" icon={HiChartPie}>
-                      Dashboard
+                    <Sidebar.Item href="/" icon={HiHome}>
+                      Home
                     </Sidebar.Item>
                     <Sidebar.Item
-                      href="/e-commerce/products"
+                      href="/dashboard/add-products"
                       icon={HiShoppingBag}
                     >
-                      Products
+                      All Products
+                    </Sidebar.Item>
+                    <Sidebar.Item
+                      href="/dashboard/add-products"
+                      icon={HiShoppingBag}
+                    >
+                      Add Products
                     </Sidebar.Item>
                     <Sidebar.Item
                       href="/dashboard/profile-management"
@@ -159,35 +151,13 @@ const DashboardSidebar = () => {
                     >
                       Profile Management
                     </Sidebar.Item>
-                    <Sidebar.Item href="/authentication/sign-in" icon={HiLogin}>
-                      Sign in
-                    </Sidebar.Item>
-                    <Sidebar.Item
-                      href="/authentication/sign-up"
-                      icon={HiPencil}
-                    >
-                      Sign up
-                    </Sidebar.Item>
                   </Sidebar.ItemGroup>
                   <Sidebar.ItemGroup>
-                    <Sidebar.Item
-                      href="https://github.com/themesberg/flowbite-react/"
-                      icon={HiClipboard}
-                    >
-                      Docs
-                    </Sidebar.Item>
-                    <Sidebar.Item
-                      href="https://flowbite-react.com/"
-                      icon={HiCollection}
-                    >
-                      Components
-                    </Sidebar.Item>
-                    <Sidebar.Item
-                      href="https://github.com/themesberg/flowbite-react/issues"
-                      icon={HiInformationCircle}
-                    >
-                      Help
-                    </Sidebar.Item>
+                    {user && (
+                      <Sidebar.Item icon={HiLogin} onClick={handleLogOut}>
+                        Log out
+                      </Sidebar.Item>
+                    )}
                   </Sidebar.ItemGroup>
                 </Sidebar.Items>
               </div>

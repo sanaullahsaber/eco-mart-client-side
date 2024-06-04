@@ -5,29 +5,29 @@ import useAuth from "../../hooks/useAuth";
 import { useEffect } from "react";
 
 const Login = () => {
- const { signIn, user } = useAuth();
- const navigate = useNavigate();
- const location = useLocation();
+  const { signIn, user } = useAuth();
+  const navigate = useNavigate();
+  const location = useLocation();
 
- const from = location?.state?.from?.pathname || "/";
+  const from = location?.state?.from?.pathname || "/";
 
- const handleSubmit = async (e) => {
-   e.preventDefault();
+  const handleSubmit = async (e) => {
+    e.preventDefault();
 
-   const form = e.target;
-   const email = form.email.value;
-   const password = form.password.value;
+    const form = e.target;
+    const email = form.email.value;
+    const password = form.password.value;
 
-   console.log(email, password);
+    console.log(email, password);
 
-   await signIn(email, password);
- };
+    await signIn(email, password);
+  };
 
- useEffect(() => {
-   if (user) {
-     navigate(from, { replace: true });
-   }
- }, [user, from, navigate]);
+  useEffect(() => {
+    if (user) {
+      navigate(from, { replace: true });
+    }
+  }, [user, from, navigate]);
 
   return (
     <div className="sm:px-6 lg:px-0 lg:my-24 sm:my-0 sm:mt-24 w-full">
@@ -38,13 +38,24 @@ const Login = () => {
             <div className="mb-2 block">
               <Label htmlFor="email1" value="Your email" />
             </div>
-            <TextInput id="email1" type="email" name="email" placeholder="Email" required />
+            <TextInput
+              id="email1"
+              type="email"
+              name="email"
+              placeholder="Email"
+              required
+            />
           </div>
           <div>
             <div className="mb-2 block">
               <Label htmlFor="password1" value="Your password" />
             </div>
-            <TextInput id="password1" type="password" name="password" required />
+            <TextInput
+              id="password1"
+              type="password"
+              name="password"
+              required
+            />
           </div>
           <div className="flex items-center gap-2">
             <Checkbox id="remember" />

@@ -45,6 +45,8 @@ const Registration = () => {
             .then((data) => {
               console.log(data);
               toast.success("Account Create Successfully");
+              localStorage.setItem("token", data?.token);
+              navigate(from, { replace: true });
             });
         }
       });
