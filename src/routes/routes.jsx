@@ -14,6 +14,8 @@ import PrivateRoute from "./private/PrivateRoute";
 import EditProfile from "../pages/Dashboard/EditProfile/EditProfile";
 import ChangePassword from "../pages/Dashboard/EditProfile/ChangePassword";
 import AddProducts from "../pages/Dashboard/AddProducts/AddProducts";
+import MyProducts from "../pages/Dashboard/MyProducts/MyProducts";
+import EditProducts from "../pages/Dashboard/EditProducts/EditProducts";
 
 export const router = createBrowserRouter([
   {
@@ -92,10 +94,28 @@ export const router = createBrowserRouter([
         path: "add-products",
         element: (
           <PrivateRoute>
-           <AddProducts></AddProducts>
+            <AddProducts></AddProducts>
           </PrivateRoute>
         ),
       },
+      {
+        path: "my-products",
+        element: (
+          <PrivateRoute>
+            <MyProducts></MyProducts>
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "edit-product/edit/:id",
+        element: (
+          <PrivateRoute>
+            <EditProducts></EditProducts>
+          </PrivateRoute>
+        ),
+        loader: (({params})=>fetch(`http://localhost:5000/grocers/get/${params.id}`))
+      },
+      
     ],
   },
 ]);

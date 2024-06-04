@@ -73,10 +73,10 @@ const DashboardSidebar = () => {
                   </Sidebar.Item>
 
                   <Sidebar.Item
-                    href="/dashboard/add-products"
+                    href="/dashboard/my-products"
                     icon={HiShoppingBag}
                   >
-                    All Products
+                    My Products
                   </Sidebar.Item>
                   <Sidebar.Item
                     href="/dashboard/add-products"
@@ -134,10 +134,10 @@ const DashboardSidebar = () => {
                       Home
                     </Sidebar.Item>
                     <Sidebar.Item
-                      href="/dashboard/add-products"
+                      href="/dashboard/my-products"
                       icon={HiShoppingBag}
                     >
-                      All Products
+                      My Products
                     </Sidebar.Item>
                     <Sidebar.Item
                       href="/dashboard/add-products"

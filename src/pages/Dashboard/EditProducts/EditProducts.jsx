@@ -1,13 +1,27 @@
+import { useState } from "react";
 import toast from "react-hot-toast";
+import { useLoaderData } from "react-router-dom";
 import Swal from "sweetalert2";
-import useAuth from "../../../hooks/useAuth";
 
-const AddProducts = () => {
-  const { user } = useAuth();
-  const token = localStorage.getItem('token')
+const EditProducts = () => {
+  const data = useLoaderData();
+  const token = localStorage.getItem("token");
+
+  const [name, setName] = useState(data.name);
+  const [brand, setBrand] = useState(data.brand);
+  const [price, setPrice] = useState(data.price);
+  const [description, setDescription] = useState(data.description);
+  const [image_url, setImageURL] = useState(data.image_url);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    const form = e.target;
+
+    const name = form.name.value;
+    const brand = form.brand.value;
+    const price = form.price.value;
+    const description = form.description.value;
+    const image_url = form.image_url.value;
 
     const { isConfirmed } = await Swal.fire({
       title: "Are you sure?",
@@ -20,36 +34,25 @@ const AddProducts = () => {
       cancelButtonText: "No, cancel",
     });
 
-    const form = e.target;
-    const name = form.name.value;
-    const brand = form.brand.value;
-    const price = form.price.value;
-    const description = form.description.value;
-    const image_url = form.image_url.value;
-    const email = user.email;
-
     if (!isConfirmed) {
       return; // Exit if user cancels confirmation
     }
 
-    const data = { name, brand, price, description, image_url , email};
+    const dataAdd = { name, brand, price, description, image_url,};
     console.log(data);
 
-    await fetch("http://localhost:5000/grocers", {
-      method: "POST",
+    await fetch(`http://localhost:5000/grocers/${data?._id}`, {
+      method: "PATCH",
       headers: {
-        "Content-Type": "application/json",
+        "Content-type": "application/json",
         authorization: `Bearer ${token}`,
       },
-      body: JSON.stringify(data)
+      body: JSON.stringify(dataAdd),
     })
       .then((res) => res.json())
-      .then((data) => {
-        console.log(data);
-        toast.success("Product added successfully");
-        form.reset();
-    })
+      .then(() => toast.success("Product edited successfully"));
   };
+
   return (
     <div>
       <div className="container mx-auto px-4 py-8">
@@ -65,6 +68,8 @@ const AddProducts = () => {
               type="text"
               name="name"
               id="name"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
               placeholder="Enter grocery item name"
               className="w-full px-4 py-2 rounded border border-gray-300 focus:outline-none focus:border-green-500"
               required
@@ -78,7 +83,8 @@ const AddProducts = () => {
               type="text"
               name="brand"
               id="brand"
-              defaultValue={"Local"}
+              defaultValue={brand}
+              onChange={(e) => setBrand(e.target.value)}
               placeholder="Enter brand name"
               className="w-full px-4 py-2 rounded border border-gray-300 focus:outline-none focus:border-green-500"
               required
@@ -92,6 +98,8 @@ const AddProducts = () => {
               type="number"
               name="price"
               id="price"
+              value={price}
+              onChange={(e) => setPrice(e.target.value)}
               placeholder="Enter price"
               className="w-full px-4 py-2 rounded border border-gray-300 focus:outline-none focus:border-green-500"
               required
@@ -105,6 +113,8 @@ const AddProducts = () => {
               name="description"
               id="description"
               rows="5"
+              value={description}
+              onChange={(e) => setDescription(e.target.value)}
               placeholder="Enter description"
               className="w-full px-4 py-2 rounded border border-gray-300 focus:outline-none focus:border-green-500"
               required
@@ -119,6 +129,8 @@ const AddProducts = () => {
               name="image_url"
               id="image_url"
               placeholder="Enter image URL"
+              value={image_url}
+              onChange={(e) => setImageURL(e.target.value)}
               className="w-full px-4 py-2 rounded border border-gray-300 focus:outline-none focus:border-green-500"
               required
             />
@@ -140,4 +152,4 @@ const AddProducts = () => {
   );
 };
 
-export default AddProducts;
+export default EditProducts;
