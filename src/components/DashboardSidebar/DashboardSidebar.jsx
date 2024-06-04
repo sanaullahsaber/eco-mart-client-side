@@ -70,7 +70,7 @@ const DashboardSidebar = () => {
               </form>
               <Sidebar.Items>
                 <Sidebar.ItemGroup>
-                  <Sidebar.Item href="/" icon={HiChartPie}>
+                  <Sidebar.Item href="/dashboard" icon={HiChartPie}>
                     Dashboard
                   </Sidebar.Item>
                   <Sidebar.Item
@@ -79,8 +79,11 @@ const DashboardSidebar = () => {
                   >
                     Products
                   </Sidebar.Item>
-                  <Sidebar.Item href="/users/list" icon={HiUsers}>
-                    Users list
+                  <Sidebar.Item
+                    href="/dashboard/profile-management"
+                    icon={HiUsers}
+                  >
+                    Profile Management
                   </Sidebar.Item>
                   <Sidebar.Item href="/authentication/sign-in" icon={HiLogin}>
                     Sign in
@@ -150,8 +153,11 @@ const DashboardSidebar = () => {
                     >
                       Products
                     </Sidebar.Item>
-                    <Sidebar.Item href="/users/list" icon={HiUsers}>
-                      Users list
+                    <Sidebar.Item
+                      href="/dashboard/profile-management"
+                      icon={HiUsers}
+                    >
+                      Profile Management
                     </Sidebar.Item>
                     <Sidebar.Item href="/authentication/sign-in" icon={HiLogin}>
                       Sign in

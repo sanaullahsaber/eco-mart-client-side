@@ -36,24 +36,28 @@ const NavBar = () => {
                   alt="User settings"
                   img={
                     user?.photoURL ||
-                    "https://flowbite.com/docs/images/people/profile-picture-5.jpg"
+                    ""
                   }
                   rounded
                 />
               }
             >
               <Dropdown.Header>
-                <span className="block text-sm">Bonnie Green</span>
-                <span className="block truncate text-sm font-medium">
-                  name@flowbite.com
-                </span>
+                {user && <span className="block text-sm">Bonnie Green</span>}
+                {user && (
+                  <span className="block truncate text-sm font-medium">
+                    name@flowbite.com
+                  </span>
+                )}
               </Dropdown.Header>
-              <Dropdown.Item>
-                <Link to="dashboard">Dashboard</Link>
-              </Dropdown.Item>
+              {user && (
+                <Dropdown.Item>
+                  <Link to="dashboard">Dashboard</Link>
+                </Dropdown.Item>
+              )}
               <Dropdown.Divider />
               <Dropdown.Item>
-                <NavLink to={"register"}>Register</NavLink>
+                <NavLink to={"/register"}>Register</NavLink>
               </Dropdown.Item>
               <Dropdown.Item>
                 {user ? (
@@ -98,28 +102,30 @@ const NavBar = () => {
                 className={({ isActive }) =>
                   isActive ? "text-red-600 underline" : ""
                 }
-                to={"shop"}
+                to={"/shop"}
               >
                 Shop
               </NavLink>
             </Navbar.Link>
 
+            {user && (
+              <Navbar.Link href="#">
+                <NavLink
+                  className={({ isActive }) =>
+                    isActive ? "text-red-600 underline" : ""
+                  }
+                  to={"dashboard"}
+                >
+                  Dashboard
+                </NavLink>
+              </Navbar.Link>
+            )}
             <Navbar.Link href="#">
               <NavLink
                 className={({ isActive }) =>
                   isActive ? "text-red-600 underline" : ""
                 }
-                to={"dashboard"}
-              >
-                Dashboard
-              </NavLink>
-            </Navbar.Link>
-            <Navbar.Link href="#">
-              <NavLink
-                className={({ isActive }) =>
-                  isActive ? "text-red-600 underline" : ""
-                }
-                to={"product"}
+                to={"/product"}
               >
                 Product
               </NavLink>
@@ -130,7 +136,7 @@ const NavBar = () => {
                 className={({ isActive }) =>
                   isActive ? "text-red-600 underline" : ""
                 }
-                to={"blog"}
+                to={"/blog"}
               >
                 Blog
               </NavLink>
@@ -141,7 +147,7 @@ const NavBar = () => {
                 className={({ isActive }) =>
                   isActive ? "text-red-600 underline" : ""
                 }
-                to={"contact"}
+                to={"/contact"}
               >
                 Contact
               </NavLink>

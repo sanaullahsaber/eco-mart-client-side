@@ -9,6 +9,10 @@ import Contact from "../pages/Contact/Contact";
 import DashboardLayout from "../layouts/DashboardLayout";
 import Login from "../pages/Login/Login";
 import Registration from "../pages/Registration/Registration";
+import ProfileManagement from "../pages/Dashboard/ProfileManagement/ProfileManagement";
+import PrivateRoute from "./private/PrivateRoute";
+import EditProfile from "../pages/Dashboard/EditProfile/EditProfile";
+import ChangePassword from "../pages/Dashboard/EditProfile/ChangePassword";
 
 export const router = createBrowserRouter([
   {
@@ -21,40 +25,65 @@ export const router = createBrowserRouter([
         element: <Home></Home>,
       },
       {
-        path: "/shop",
+        path: "shop",
         element: <Shop></Shop>,
       },
       {
-        path: "/product",
+        path: "product",
         element: <Product></Product>,
       },
       {
-        path: "/blog",
+        path: "blog",
         element: <Blog></Blog>,
       },
       {
-        path: "/contact",
+        path: "contact",
         element: <Contact></Contact>,
       },
       {
-        path: "/login",
-        element: <Login></Login>
+        path: "login",
+        element: <Login></Login>,
       },
       {
-        path: "/register",
-        element: <Registration></Registration>
-      }
+        path: "register",
+        element: <Registration></Registration>,
+      },
     ],
   },
   {
-    path: "/dashboard",
+    path: "dashboard",
     element: <DashboardLayout></DashboardLayout>,
     errorElement: <ErrorPage></ErrorPage>,
     children: [
       {
-        path: "",
-        element: <div>hello world</div>
-      }
-    ]
+        path: "profile-management",
+        element: (
+          <PrivateRoute>
+            <ProfileManagement></ProfileManagement>,
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "profile/edit/:id",
+        element: (
+          <PrivateRoute>
+            <EditProfile></EditProfile>
+          </PrivateRoute>
+        ),
+        loader: ({ params }) =>
+          fetch(`http://localhost:5000/user/get/${params.id}`),
+      },
+      {
+        path: "profile/edit-pass/:id",
+        element: (
+          <PrivateRoute>
+            <ChangePassword></ChangePassword>
+          </PrivateRoute>
+        ),
+        loader: ({ params }) =>
+          fetch(`http://localhost:5000/user/get/${params.id}`),
+      },
+
+    ],
   },
 ]);
