@@ -3,7 +3,6 @@ import MainLayout from "../layouts/MainLayout";
 import ErrorPage from "../pages/ErrorPage/ErrorPage";
 import Home from "../pages/Home/Home";
 import Shop from "../pages/Shop/Shop";
-import Product from "../pages/Product/Product";
 import Blog from "../pages/Blog/Blog";
 import Contact from "../pages/Contact/Contact";
 import DashboardLayout from "../layouts/DashboardLayout";
@@ -16,6 +15,7 @@ import ChangePassword from "../pages/Dashboard/EditProfile/ChangePassword";
 import AddProducts from "../pages/Dashboard/AddProducts/AddProducts";
 import MyProducts from "../pages/Dashboard/MyProducts/MyProducts";
 import EditProducts from "../pages/Dashboard/EditProducts/EditProducts";
+import ViewDetails from "../pages/ViewDetails/ViewDetails";
 
 export const router = createBrowserRouter([
   {
@@ -32,10 +32,6 @@ export const router = createBrowserRouter([
         element: <Shop></Shop>,
       },
       {
-        path: "product",
-        element: <Product></Product>,
-      },
-      {
         path: "blog",
         element: <Blog></Blog>,
       },
@@ -50,6 +46,16 @@ export const router = createBrowserRouter([
       {
         path: "register",
         element: <Registration></Registration>,
+      },
+      {
+        path: "view-details/:id",
+        element: (
+      
+            <ViewDetails></ViewDetails>
+        
+        ),
+        loader: ({ params }) =>
+          fetch(`http://localhost:5000/grocers/get/${params.id}`),
       },
     ],
   },
@@ -113,9 +119,9 @@ export const router = createBrowserRouter([
             <EditProducts></EditProducts>
           </PrivateRoute>
         ),
-        loader: (({params})=>fetch(`http://localhost:5000/grocers/get/${params.id}`))
+        loader: ({ params }) =>
+          fetch(`http://localhost:5000/grocers/get/${params.id}`),
       },
-      
     ],
   },
 ]);

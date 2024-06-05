@@ -4,7 +4,7 @@ import BottomBar from "../components/BottomBar(Footer)/BottomBar";
 
 const MainLayout = () => {
   return (
-    <div>
+    <div style={{ background: "rgb(245, 247, 246)" }}>
       <Navbar></Navbar>
       <Outlet></Outlet>
       <BottomBar></BottomBar>

@@ -1,0 +1,9 @@
+/* SearchResult.css */
+.search-result {
+  padding: 0.5rem;
+  cursor: pointer;
+}
+
+.search-result:hover {
+  background-color: #f0f0f0;
+}
