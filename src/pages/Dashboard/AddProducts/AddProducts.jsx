@@ -4,7 +4,7 @@ import useAuth from "../../../hooks/useAuth";
 
 const AddProducts = () => {
   const { user } = useAuth();
-  const token = localStorage.getItem('token')
+  const token = localStorage.getItem("token");
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -32,23 +32,23 @@ const AddProducts = () => {
       return; // Exit if user cancels confirmation
     }
 
-    const data = { name, brand, price, description, image_url , email};
+    const data = { name, brand, price, description, image_url, email };
     console.log(data);
 
-    await fetch("http://localhost:5000/grocers", {
+    await fetch("https://eco-mart-server-side.vercel.app/grocers", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
         authorization: `Bearer ${token}`,
       },
-      body: JSON.stringify(data)
+      body: JSON.stringify(data),
     })
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
         toast.success("Product added successfully");
         form.reset();
-    })
+      });
   };
   return (
     <div>

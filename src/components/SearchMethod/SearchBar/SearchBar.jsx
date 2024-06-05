@@ -5,7 +5,7 @@ const SearchBar = ({ setResults }) => {
   const [input, setInput] = useState("");
 
   const fetchData = (value) => {
-    fetch("http://localhost:5000/grocers/")
+    fetch("https://eco-mart-server-side.vercel.app/grocers/")
       .then((res) => res.json())
       .then((data) => {
         const results = data.filter((item) =>

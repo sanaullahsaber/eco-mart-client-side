@@ -5,7 +5,7 @@ const BestSelling = () => {
   const [products, setProducts] = useState([]);
 
   useEffect(() => {
-    fetch(`http://localhost:5000/grocers/`)
+    fetch(`https://eco-mart-server-side.vercel.app/grocers/`)
       .then((res) => res.json())
       .then((data) => setProducts(data));
   }, []);
@@ -16,10 +16,7 @@ const BestSelling = () => {
       <p className="text-5xl font-bold text-center mb-8">Browser Our Hottest</p>
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
         {products.slice(0, 12).map((product) => (
-          <SingleProduct
-            key={product._id}
-            product={product}
-          ></SingleProduct>
+          <SingleProduct key={product._id} product={product}></SingleProduct>
         ))}
       </div>
     </div>

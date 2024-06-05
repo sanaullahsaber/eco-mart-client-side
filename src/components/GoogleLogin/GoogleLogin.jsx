@@ -6,7 +6,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 const GoogleLogin = () => {
   const { googleLogin } = useAuth();
   const navigate = useNavigate();
-  const location = useLocation()
+  const location = useLocation();
 
   const from = location.state?.from?.pathname || "/";
 
@@ -17,19 +17,19 @@ const GoogleLogin = () => {
           email: data?.user?.email,
           name: data?.user?.displayName,
         };
-        fetch("http://localhost:5000/user", {
+        fetch("https://eco-mart-server-side.vercel.app/user", {
           method: "POST",
           headers: {
-            "Content-Type": "application/json"
+            "Content-Type": "application/json",
           },
-          body: JSON.stringify(userInfo)
+          body: JSON.stringify(userInfo),
         })
           .then((res) => res.json())
           .then((data) => {
-            console.log(data)
+            console.log(data);
             toast.success("Google Login Successfully");
             localStorage.setItem("token", data?.token);
-            navigate(from, {replace: true})
+            navigate(from, { replace: true });
           });
       }
     });

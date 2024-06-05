@@ -49,13 +49,11 @@ export const router = createBrowserRouter([
       },
       {
         path: "view-details/:id",
-        element: (
-      
-            <ViewDetails></ViewDetails>
-        
-        ),
+        element: <ViewDetails></ViewDetails>,
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/grocers/get/${params.id}`),
+          fetch(
+            `https://eco-mart-server-side.vercel.app/grocers/get/${params.id}`
+          ),
       },
     ],
   },
@@ -84,7 +82,9 @@ export const router = createBrowserRouter([
           </PrivateRoute>
         ),
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/user/get/${params.id}`),
+          fetch(
+            `https://eco-mart-server-side.vercel.app/user/get/${params.id}`
+          ),
       },
       {
         path: "profile/edit-pass/:id",
@@ -94,7 +94,9 @@ export const router = createBrowserRouter([
           </PrivateRoute>
         ),
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/user/get/${params.id}`),
+          fetch(
+            `https://eco-mart-server-side.vercel.app/user/get/${params.id}`
+          ),
       },
       {
         path: "add-products",
@@ -120,7 +122,9 @@ export const router = createBrowserRouter([
           </PrivateRoute>
         ),
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/grocers/get/${params.id}`),
+          fetch(
+            `https://eco-mart-server-side.vercel.app/grocers/get/${params.id}`
+          ),
       },
     ],
   },

@@ -34,7 +34,7 @@ const Registration = () => {
             email: data?.user?.email,
             name: name,
           };
-          fetch("http://localhost:5000/user", {
+          fetch("https://eco-mart-server-side.vercel.app/user", {
             method: "POST",
             headers: {
               "Content-Type": "application/json",
@@ -54,7 +54,7 @@ const Registration = () => {
         navigate(from);
       }
     }
-  }
+  };
   return (
     <div className="sm:px-6 lg:px-0 lg:my-24 sm:my-0 sm:mt-24 w-full">
       <Card className="max-w-sm mx-auto">

@@ -38,17 +38,20 @@ const EditProducts = () => {
       return; // Exit if user cancels confirmation
     }
 
-    const dataAdd = { name, brand, price, description, image_url,};
+    const dataAdd = { name, brand, price, description, image_url };
     console.log(data);
 
-    await fetch(`http://localhost:5000/grocers/${data?._id}`, {
-      method: "PATCH",
-      headers: {
-        "Content-type": "application/json",
-        authorization: `Bearer ${token}`,
-      },
-      body: JSON.stringify(dataAdd),
-    })
+    await fetch(
+      `https://eco-mart-server-side.vercel.app/grocers/${data?._id}`,
+      {
+        method: "PATCH",
+        headers: {
+          "Content-type": "application/json",
+          authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify(dataAdd),
+      }
+    )
       .then((res) => res.json())
       .then(() => toast.success("Product edited successfully"));
   };

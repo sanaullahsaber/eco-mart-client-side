@@ -24,7 +24,7 @@ const SingleProduct = ({ product, onDelete }) => {
       return; // Exit if user cancels confirmation
     }
 
-    await fetch(`http://localhost:5000/grocers/${_id}`, {
+    await fetch(`https://eco-mart-server-side.vercel.app/grocers/${_id}`, {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",
@@ -34,7 +34,7 @@ const SingleProduct = ({ product, onDelete }) => {
       .then((res) => res.json())
       .then(() => {
         toast.success("Product delete Successfully");
-        onDelete(_id)
+        onDelete(_id);
       });
   };
   return (

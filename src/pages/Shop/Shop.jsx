@@ -5,7 +5,7 @@ const Shop = () => {
   const [products, setProducts] = useState([]);
 
   useEffect(() => {
-    fetch(`http://localhost:5000/grocers/`)
+    fetch(`https://eco-mart-server-side.vercel.app/grocers/`)
       .then((res) => res.json())
       .then((data) => setProducts(data));
   }, []);

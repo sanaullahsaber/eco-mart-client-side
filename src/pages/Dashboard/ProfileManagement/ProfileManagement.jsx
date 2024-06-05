@@ -1,4 +1,4 @@
-import {  Card } from "flowbite-react";
+import { Card } from "flowbite-react";
 import useAuth from "../../../hooks/useAuth";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
@@ -8,13 +8,13 @@ const ProfileManagement = () => {
   const [userInfo, setUserInfo] = useState();
 
   useEffect(() => {
-    fetch(`http://localhost:5000/user/${user?.email}`)
+    fetch(`https://eco-mart-server-side.vercel.app/user/${user?.email}`)
       .then((res) => res.json())
       .then((data) => setUserInfo(data));
   }, [user]);
 
   console.log(userInfo);
-  
+
   return (
     <div className="flex items-center justify-center min-h-screen bg-base-200">
       <Card className="max-w-sm">

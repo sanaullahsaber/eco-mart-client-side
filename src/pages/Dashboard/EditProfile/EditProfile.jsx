@@ -4,7 +4,7 @@ import { useLoaderData } from "react-router-dom";
 const EditProfile = () => {
   const data = useLoaderData();
   console.log(data);
-  
+
   const handleSubmit = (e) => {
     e.preventDefault();
 
@@ -23,7 +23,7 @@ const EditProfile = () => {
       mobileNumber,
       email: data?.email,
     };
-    fetch(`http://localhost:5000/user/${data?.email}`, {
+    fetch(`https://eco-mart-server-side.vercel.app/user/${data?.email}`, {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",
@@ -35,9 +35,7 @@ const EditProfile = () => {
         console.log(data);
         toast.success("Updated Profile successfully");
       });
-
-    
-  }
+  };
   return (
     <div className="flex items-center justify-center min-h-screen bg-gray-100 p-4">
       <form
